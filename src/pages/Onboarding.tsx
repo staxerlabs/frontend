@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import WorldId from '../components/WorldId';
-import Location from '../components/Location';
 
 interface OnboardingProps {}
 

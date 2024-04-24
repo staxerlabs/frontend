@@ -10,9 +10,7 @@ const ErrorPage: React.FC = () => {
         <img src={logo} alt="Staxer logo" className='Staxer'/>
         <h1>Oops!</h1>
         <p>Sorry, an unexpected error has occurred.</p>
-        <p>
-          <i>{error?.statusText || error?.message}</i>
-        </p>
+        <p>Please try again later.</p>
       </div>
     );
   };
