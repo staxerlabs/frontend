@@ -1,0 +1,20 @@
+.header {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    border: 2rem;
+    padding: 0 1rem;
+}
+
+.logo-navbar {
+    width: 3rem;
+}
+
+.header h1 {
+    align-self: center;
+    font-weight: 700;
+    font-size: 24px;
+}

@@ -1,0 +1,47 @@
+.onboarding {
+    min-height: 50svh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    row-gap: 1rem;
+
+}
+
+.onboarding-title {
+    min-width: 200px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 2rem;
+}
+
+.skip-link {
+        color: #838485;
+        font-size: 14px;
+        line-height: 23px;
+        text-align: right;     
+        justify-self: flex-end;
+}
+
+.button-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.rates-grid {
+    display: grid;
+    grid-template-columns: 10% 40% 30%;
+    grid-template-rows: 16px repeat(3, 35px);
+    gap: 1rem;
+    padding-bottom: 2.5rem;
+}
+
+.rates-headline {
+    grid-column: 1/4;
+    text-align: end;
+}

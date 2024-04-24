@@ -1,0 +1,141 @@
+/* Style reset */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html, body, * {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font-family: 'Poppins';
+	vertical-align: baseline;
+    box-sizing: border-box;
+}
+
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Variable names */
+:root {
+    --white: #FAF9F6;
+    --black: #0f0f0f;
+}
+
+/* Mobile-first frame */
+html, body, #root, .App, .layout {
+    width: 100svw;
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.layout {
+    padding: 1rem;
+}
+
+main {
+    min-height: 50svh;
+}
+
+body {
+    /* Global styles */
+    background-color: var(--white);
+    color: var(--black);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Forms */
+button {
+    background-color: var(--black);
+    color: var(--white);
+    width: 184px;
+    height: 48px;
+    padding: 14px 40px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Poppins';
+    font-weight: 600;
+    line-height: 22px;
+}
+
+.button-light {
+    background-color: transparent;
+    border: 1px solid var(--black);
+    color: var(--black)
+}
+
+input[type=text] {
+    border: 0;
+    border-bottom: 3px solid #505050;
+    margin-bottom: 2rem;
+    width: 100%;
+    font-size: 12px;
+    height: 42px;
+}
+
+input:focus {
+    border: 0;
+}
+
+input[type="checkbox"] {
+    width: 32px;
+    height: 32px;
+    border-radius: 5px; 
+    background-color: var(--black); 
+    border: 2px solid var(--black); 
+    outline: none; 
+    cursor: pointer;
+}
+
+input[type="checkbox"]:hover {
+    border: 2px solid var(--black); 
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--black); 
+    border-color: var(--black); 
+  }
+  
+input[type="checkbox"] + label {
+    color: var(--white); 
+    font-size: 16px;
+    margin-left: 8px; 
+  }
+
+/* Desktop */
+@media screen and (min-width: 780px) {
+    body {
+        width: 380px;
+    }
+
+    .layout {
+        width: 380px;
+    }
+    
+}
