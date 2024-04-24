@@ -9,11 +9,11 @@ const SelectRates: React.FC<SelectRatesProps> = () => {
     const navigate = useNavigate();
 
   const SelectRatesClickHandler = () => {
-    navigate('/homepage/SelectRates')
+    navigate('/newsafe')
   }
 
   return (
-      <main className="onboarding">
+      <main>
         <h2>Select what applies to you</h2>
         
         <Card text="Your withholding rate defines your percentage  auto-deducting from incoming funds to your wallet for taxes or expenses."/>

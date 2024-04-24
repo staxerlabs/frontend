@@ -59,6 +59,11 @@ main {
     min-height: 50svh;
 }
 
+main > * {
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
 body {
     /* Global styles */
     background-color: var(--white);
@@ -127,6 +132,23 @@ input[type="checkbox"] + label {
     font-size: 16px;
     margin-left: 8px; 
   }
+
+select {
+        cursor: pointer;
+        top: 202px;
+        left: 21px;
+        width: 337px;
+        height: 41px;
+        padding: 0px 8px;
+        border: 1px solid #d2d2d7;
+        box-sizing: border-box;
+        border-radius: 8px;
+        background-color: rgba(252,252,252,0.83);
+        font-size: 14px;
+        font-family: Poppins;
+        line-height: 19px;
+        outline: none;
+}
 
 /* Desktop */
 @media screen and (min-width: 780px) {

@@ -5,6 +5,7 @@ import Onboarding from '../pages/Onboarding'
 import Location from "../components/Location";
 import Tracking from "../components/Tracking";
 import SelectRates from "../components/SelectRates";
+import CreateNewSafe from "../pages/CreateNewSafe";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
         {
           path: '/homepage/selectrates',
           element: <SelectRates/>
+        },
+        {
+          path: '/newsafe',
+          element: <CreateNewSafe/>
         }
       ]
     },
