@@ -3,13 +3,14 @@ import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/success.css';
 import successImage from '../assets/success.png';
 
-interface SuccessProps {
+type SuccessProps = {
     message: string;
     buttonText: string;
     route: string;
 }
 
 const Success: React.FC = () => {
+    // const { message, buttonText, route } = useParams<{message: string, buttonText: string,      route: string}>();
     const { message, buttonText, route } = useParams<SuccessProps>();
 
     const navigate = useNavigate();
@@ -18,8 +19,9 @@ const Success: React.FC = () => {
         <div className="success-screen">
             <h1>Success!</h1>
             <img src={successImage} alt="" />
-            <h2>{decodeURIComponent(message)}</h2>
-            <button onClick={() => navigate(decodeURIComponent(route)) }>{decodeURIComponent(buttonText)}</button>
+            <h2>{message}</h2>
+            {/* It sends the user to the dashboard if there's no passed route */}
+            <button onClick={() => navigate(route || '/dashboard') }>{buttonText}</button>
         </div>
     );
 };
