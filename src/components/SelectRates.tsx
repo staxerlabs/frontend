@@ -36,7 +36,6 @@ const SelectRates: React.FC<SelectRatesProps> = () => {
         
         <button onClick={SelectRatesClickHandler}>Continue</button>
         
-        
       </main>
   );
 }

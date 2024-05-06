@@ -10,12 +10,12 @@ const Location: React.FC<LocationProps> = () => {
     const navigate = useNavigate();
 
   const LocationClickHandler = () => {
-    navigate('/homepage/tracking')
+    navigate('/tracking')
   }
 
   return (
       <main className="onboarding">
-        <Link to='/homepage/tracking' className="skip-link">Skip</Link>
+        <Link to='/tracking' className="skip-link">Skip</Link>
         <span className='onboarding-title'>
           <MdPlace /> What's your location?
           {/* Insert question mark */}

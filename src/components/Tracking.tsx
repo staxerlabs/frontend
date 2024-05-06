@@ -8,7 +8,7 @@ const Tracking: React.FC<TrackingProps> = () => {
     const navigate = useNavigate();
 
   const TrackingClickHandler = () => {
-    navigate('/homepage/selectrates')
+    navigate('/selectrates')
   }
 
   return (
