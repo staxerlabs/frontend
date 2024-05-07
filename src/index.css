@@ -38,6 +38,7 @@ table {
 :root {
     --white: #FAF9F6;
     --black: #0f0f0f;
+    --grey: #f0f0f0;
 }
 
 /* Mobile-first frame */
@@ -90,7 +91,7 @@ button {
 }
 
 .button-light {
-    background-color: transparent;
+    background-color: var(--white);
     border: 1px solid var(--black);
     color: var(--black)
 }

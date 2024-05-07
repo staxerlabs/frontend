@@ -8,6 +8,8 @@ import SelectRates from "../components/SelectRates";
 import CreateNewSafe from "../pages/CreateNewSafe";
 import CreateNewSafe2 from "../pages/CreateNewSafe2";
 import Success from "../pages/Success";
+import Dashboard from "../pages/Dashboard";
+import TransactionHistory from "../pages/TransactionHistory";
 
 const router = createBrowserRouter([
     {
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
         {
           path: '/success/:message/:buttonText/:route',
           element: <Success/>
+        },
+        {
+          path: '/dashboard',
+          element: <Dashboard/>
+        },
+        {
+          path: '/transaction-history',
+          element: <TransactionHistory/>
         }
       ]
     },

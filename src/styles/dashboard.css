@@ -1,0 +1,100 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-wallet-balance {
+    width: 80%;
+    border-radius: 12px;
+    height: 144px;
+    background-color: var(--grey);
+    font-size: 1rem;
+    display: grid;
+    grid-template-columns: 80% 20%;
+    align-items: center;
+    justify-content: space-between;
+    align-content: space-between;
+    margin: 1.5rem;
+}
+
+.dashboard-wallet-balance > h3 {
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 2rem;
+}
+
+.dashboard-wallet-balance > button {
+    background-color: transparent;
+    width: 40px;
+    color: var(--black);
+    font-weight: 400;
+    font-size: 0.75rem;
+    text-decoration: underline;
+}
+
+.dashboard-container {
+    background-color: var(--black);
+    border-radius: 12px 12px 0 0;
+    width: 100%;
+    color: var(--white);
+}
+
+.dashboard-container > section {
+    margin-bottom: 3rem;
+}
+
+.dashboard-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+}
+
+.dashboard-title-active {
+    background-color: var(--white);
+    color: var(--black);
+    border-radius: 12px;
+}
+.dashboard-title-inactive {
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: 12px;
+}
+
+.dashboard-card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+.dashboard-card-grid > * {
+    color: var(--black);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer
+}
+
+.card-grid {
+    color: var(--black);
+    border-radius: 12px;
+    width: 100%;
+    padding: 1.5rem;
+    height: 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.dashboard-grid-add-account {
+    background-color: var(--grey);
+    opacity: 0.63;
+}
+
+/* .dashboard-grid-add-account:last-child {
+    justify-self:center;
+} */
