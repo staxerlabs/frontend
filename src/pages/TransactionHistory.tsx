@@ -5,6 +5,7 @@ import TransactionCard from '../components/TransactionCard'
 import { useNavigate } from "react-router-dom";
 
 const TransactionHistory: React.FC = () => {
+    const navigate = useNavigate();
     return (
         <main className="history-container">
             <h1>Transaction History</h1>
@@ -13,7 +14,7 @@ const TransactionHistory: React.FC = () => {
             ))}
             
          <button 
-            onClick={() => useNavigate('/dashboard')}
+            onClick={() => navigate('/dashboard')}
             className="button-wide"
          >Back to dashboard</button>       
         </main>
