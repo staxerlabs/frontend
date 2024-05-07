@@ -10,7 +10,6 @@ type SuccessProps = {
 }
 
 const Success: React.FC = () => {
-    // const { message, buttonText, route } = useParams<{message: string, buttonText: string,      route: string}>();
     const { message, buttonText, route } = useParams<SuccessProps>();
 
     const navigate = useNavigate();

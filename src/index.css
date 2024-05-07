@@ -38,6 +38,7 @@ table {
 :root {
     --white: #FAF9F6;
     --black: #0f0f0f;
+    --grey: #f0f0f0;
 }
 
 /* Mobile-first frame */
@@ -53,6 +54,10 @@ html, body, #root, .App, .layout {
 
 .layout {
     padding: 1rem;
+}
+
+.content {
+    width: 100%;
 }
 
 main {
@@ -90,13 +95,14 @@ button {
 }
 
 .button-light {
-    background-color: transparent;
+    background-color: var(--white);
     border: 1px solid var(--black);
     color: var(--black)
 }
 
 .button-wide {
-    width: 100%;
+    width: 90%;
+    margin: 1rem;
 }
 
 input[type=text] {
@@ -161,6 +167,10 @@ select {
     }
 
     .layout {
+        width: 380px;
+    }
+
+    .content {
         width: 380px;
     }
     

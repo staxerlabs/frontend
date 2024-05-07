@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Card from '../components/Card';
+import Card from '../components/CardText';
 import '../styles/newsafe.css'
 
 interface CreateNewSafeProps {}

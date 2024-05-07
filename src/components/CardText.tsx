@@ -8,7 +8,7 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ text }) => {
   return (
     <div className="card">
-      <p>{text}</p>
+      {text}
     </div>
   );
 };
