@@ -56,6 +56,10 @@ html, body, #root, .App, .layout {
     padding: 1rem;
 }
 
+.content {
+    width: 100%;
+}
+
 main {
     min-height: 50svh;
 }
@@ -97,7 +101,8 @@ button {
 }
 
 .button-wide {
-    width: 100%;
+    width: 90%;
+    margin: 1rem;
 }
 
 input[type=text] {
@@ -162,6 +167,10 @@ select {
     }
 
     .layout {
+        width: 380px;
+    }
+
+    .content {
         width: 380px;
     }
     

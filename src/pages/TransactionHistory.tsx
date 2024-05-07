@@ -1,10 +1,21 @@
 import React from "react";
 import '../styles/transaction-history.css'
+import data from '../utils/transaction.json'
+import TransactionCard from '../components/TransactionCard'
+import { useNavigate } from "react-router-dom";
 
 const TransactionHistory: React.FC = () => {
     return (
         <main className="history-container">
             <h1>Transaction History</h1>
+            {data.map(transaction => (
+                <TransactionCard key={transaction.transaction_id} transaction={transaction} />
+            ))}
+            
+         <button 
+            onClick={() => useNavigate('/dashboard')}
+            className="button-wide"
+         >Back to dashboard</button>       
         </main>
     );
 }
