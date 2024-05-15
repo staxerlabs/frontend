@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Card from "../components/CardText";
 import data from "../utils/transaction.json";
 import UnderDevTooltip from "../components/UnderDevTooltip";
 import "../styles/edit-transaction.css";
@@ -20,15 +19,14 @@ const EditTransaction: React.FC = () => {
                     className="button-wide mini-button"
                 > &lt; Dashboard</button>  
 
-            <Card text={
-                <div className="transaction-card-section">
+            <div className="transaction-card-section">
+
                 <p><strong>Transaction ID:</strong> {transaction.transaction_id}</p>
                 <p><strong>Sender's Wallet:</strong> {transaction.senders_wallet}</p>
                 <p><strong>Amount:</strong> {transaction.amount} BTC</p>
                 <p><strong>Timestamp:</strong> {transaction.timestamp}</p>
+
             </div>
-            }>
-            </Card>
 
             
             <h2>Transaction Name</h2>
