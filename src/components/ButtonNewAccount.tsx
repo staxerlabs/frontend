@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaPlus } from "react-icons/fa";
 import { Plus } from '@phosphor-icons/react';
 
 const ButtonNewAccount: React.FC = () => {
