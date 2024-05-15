@@ -21,10 +21,16 @@ const TransactionCard: React.FC<TransactionCardProps> = ({transaction}) => {
 
     return (
         <div className="transaction-card">
-            <span className="transaction-card-title">
+  
                 <h2># {transaction.name}</h2>
-                <button onClick={() => navigate(`/edit-transaction/:${transaction.transaction_id}`)}>Add Name</button>
-            </span>
+                {/* <Link to={`/edit-transaction/${transaction.transaction_id}`}>Edit</Link> */}
+
+                <button 
+                        onClick={() => navigate(`/edit-transaction/${transaction.transaction_id}`)}
+                        className="mini-button"
+                    >Edit
+                </button>
+           
             
             <div className="transaction-card-section">
                 <p><strong>Transaction ID:</strong> {transaction.transaction_id}</p>
@@ -32,6 +38,7 @@ const TransactionCard: React.FC<TransactionCardProps> = ({transaction}) => {
                 <p><strong>Amount:</strong> {transaction.amount} BTC</p>
                 <p><strong>Timestamp:</strong> {transaction.timestamp}</p>
             </div>
+            
             <h3>Main Account Allocation</h3>
             <div className="transaction-card-section">
                 <p><strong>Main Allocated:</strong> {transaction.main_allocated} BTC</p>

@@ -4,3 +4,15 @@
     gap: 0.5rem;
 }
 
+.form-text-select {
+    width: 100%;
+    padding: 0rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+}
+
+.form-text-select > select {
+    width: 100%;
+}

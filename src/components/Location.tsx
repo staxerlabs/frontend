@@ -1,5 +1,4 @@
 import { MdPlace } from "react-icons/md";
-
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/onboarding.css'

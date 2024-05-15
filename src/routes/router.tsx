@@ -55,7 +55,7 @@ const router = createBrowserRouter([
           element: <TransactionHistory/>
         },
         {
-          path: '/edit-transaction',
+          path: '/edit-transaction/:transaction_id',
           element: <EditTransaction/>
         }
       ]

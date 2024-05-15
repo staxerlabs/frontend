@@ -6,7 +6,7 @@
 }
 
 .dashboard-wallet-balance {
-    width: 80%;
+    width: 90%;
     border-radius: 12px;
     height: 144px;
     background-color: var(--grey);
@@ -83,7 +83,7 @@
     border-radius: 12px;
     width: 100%;
     padding: 1.5rem;
-    height: 6rem;
+    /* height: 6rem; */
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -93,8 +93,7 @@
 .dashboard-grid-add-account {
     background-color: var(--grey);
     opacity: 0.63;
+    display: flex;
+    font-size: 0.75rem;
+    line-height: 1.5rem;
 }
-
-/* .dashboard-grid-add-account:last-child {
-    justify-self:center;
-} */
