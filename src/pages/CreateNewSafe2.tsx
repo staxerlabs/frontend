@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '../components/CardText';
 import '../styles/newsafe.css'
+import UnderDevelopmentTooltip from '../components/UnderDevTooltip';
 
 interface CreateNewSafe2Props {}
 
@@ -42,46 +43,58 @@ const CreateNewSafe2: React.FC<CreateNewSafe2Props> = () => {
     ]
   }
 
-
   return (
       <main>
         
         <Card text="Staxer can automatically convert the tokens you want to withheld."/>
-
-        <label htmlFor="autoEarn">Select "Withholding" currency</label>
-        <select defaultValue="Do Not Convert">
-          {(currencyProps.values).map((value) => (
-            <option value={value} key={value} label={value}/>
-          ))}
-        </select>
+        <span className='form-text-select'>
+          <label htmlFor="autoEarn">Select "Withholding" currency</label>
+          <select defaultValue="Do Not Convert">
+            {(currencyProps.values).map((value) => (
+              <option value={value} key={value} label={value}/>
+            ))}
+          </select>
+        </span>
         
+        <span className='form-text-select'>
         <label htmlFor="autoEarn">Select "spendings" currency</label>
         <select defaultValue="Do Not Convert">
           {(currencyProps.values).map((value) => (
             <option value={value} key={value} label={value}/>
           ))}
         </select>
-
-        <label htmlFor="autoEarn">Enable auto-earn on withheld taxes</label>
-        <select defaultValue="Your decision">
-          {(decisionProps.values).map((value) => (
-            <option value={value} key={value} label={value}/>
-          ))}
-        </select>
-
-        <label htmlFor="donate">Donate</label>
-        <select defaultValue="Your decision">
-          {(decisionProps.values).map((value) => (
-            <option value={value} key={value} label={value}/>
-          ))}
-        </select>
+        </span>
         
+        <span className='form-text-select'>
+          <span>
+            <label htmlFor="autoEarn" className='disabled-text'>Enable auto-earn on withheld taxes </label>
+            <UnderDevelopmentTooltip />    
+          </span>
+         
+        <select defaultValue="Your decision" disabled>
+          {(decisionProps.values).map((value) => (
+            <option value={value} key={value} label={value}/>
+          ))}
+        </select>
+        </span>
+
+        <span className='form-text-select'>
+          <label htmlFor="donate">Donate</label>
+          <select defaultValue="Your decision">
+            {(decisionProps.values).map((value) => (
+              <option value={value} key={value} label={value}/>
+            ))}
+          </select>
+        </span>
+        
+        <span className='form-text-select'>
         <label htmlFor="staxerFee">Contribute to Staxer</label>
         <select defaultValue="1% fee">
           {(staxerFeeProps.values).map((value) => (
             <option value={value} key={value} label={value}/>
           ))}
         </select>
+        </span>
 
         <button onClick={AddNextSafeClickHandler} className='button-wide'>Done and New Safe</button>
         <button onClick={NewSafeDoneClickHandler} className='button-wide'>Continue</button>

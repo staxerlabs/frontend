@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaPlus } from "react-icons/fa";
+import { Plus } from '@phosphor-icons/react';
 
 const ButtonNewAccount: React.FC = () => {
     const navigate = useNavigate();
@@ -8,10 +9,10 @@ const ButtonNewAccount: React.FC = () => {
     return(
         <div 
             className='card-grid dashboard-grid-add-account'
-            onClick={() => navigate('/new-account')}
+            onClick={() => navigate('/newsafe')}
         >
                         <p>New Account</p>
-                        <FaPlus />
+                        <Plus size={32} />
                     </div>
     )
 

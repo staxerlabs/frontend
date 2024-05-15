@@ -19,10 +19,14 @@ const Dashboard: React.FC = () => {
     return (
         <main className='dashboard'>
             <div className='dashboard-wallet-balance'>
-                <span style={walletShow ? {visibility: 'hidden'} : {visibility: 'visible'}}>
-                    Wallet Balance
-                    <h3>$ 22,00</h3>
-                </span>
+                <div style={{"lineHeight": "2rem"}}>
+                Wallet Balance
+                    <span style={walletShow ? {visibility: 'hidden'} : {visibility: 'visible'}}>
+                        <h3>$ 22,00</h3>
+                    </span>
+                </div>
+                  
+                    
                 <p></p>
                 <p></p>
                 <button onClick={() => setWalletShow(!walletShow)}>
