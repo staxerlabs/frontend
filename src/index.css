@@ -101,8 +101,8 @@ button {
 }
 
 .button-wide {
-    width: 90%;
-    margin: 1rem;
+    width: 100%;
+    margin: 1rem 0;
 }
 
 .mini-button {
@@ -117,7 +117,12 @@ button {
 
 }
 
+button:disabled {
+    background-color: rgba(0,0,0,0.6);
+}
+
 input[type=text] {
+    background-color: var(--grey);
     border: 0;
     border-bottom: 3px solid #505050;
     margin-bottom: 2rem;

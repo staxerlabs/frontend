@@ -1,7 +1,7 @@
 import React from "react";
 import '../styles/transaction-history.css'
 import data from '../utils/transaction.json'
-import TransactionCard from '../components/TransactionCard'
+import TransactionCard from '../components/HistoryCard'
 import { useNavigate } from "react-router-dom";
 
 const TransactionHistory: React.FC = () => {

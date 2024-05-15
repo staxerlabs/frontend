@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/transaction-card.css'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 interface Transaction {
     name: string;
@@ -23,6 +23,8 @@ const TransactionCard: React.FC<TransactionCardProps> = ({transaction}) => {
         <div className="transaction-card">
   
                 <h2># {transaction.name}</h2>
+                {/* <Link to={`/edit-transaction/${transaction.transaction_id}`}>Edit</Link> */}
+
                 <button 
                         onClick={() => navigate(`/edit-transaction/${transaction.transaction_id}`)}
                         className="mini-button"
@@ -36,6 +38,7 @@ const TransactionCard: React.FC<TransactionCardProps> = ({transaction}) => {
                 <p><strong>Amount:</strong> {transaction.amount} BTC</p>
                 <p><strong>Timestamp:</strong> {transaction.timestamp}</p>
             </div>
+            
             <h3>Main Account Allocation</h3>
             <div className="transaction-card-section">
                 <p><strong>Main Allocated:</strong> {transaction.main_allocated} BTC</p>

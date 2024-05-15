@@ -11,7 +11,6 @@ const UnderDevelopmentTooltip: React.FC = () => {
 
   return (
     <OverlayTrigger
-      trigger="hover"
       placement="top"
       overlay={renderTooltip}
     >
