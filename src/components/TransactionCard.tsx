@@ -21,10 +21,14 @@ const TransactionCard: React.FC<TransactionCardProps> = ({transaction}) => {
 
     return (
         <div className="transaction-card">
-            <span className="transaction-card-title">
+  
                 <h2># {transaction.name}</h2>
-                <button onClick={() => navigate(`/edit-transaction/:${transaction.transaction_id}`)}>Add Name</button>
-            </span>
+                <button 
+                        onClick={() => navigate(`/edit-transaction/${transaction.transaction_id}`)}
+                        className="mini-button"
+                    >Edit
+                </button>
+           
             
             <div className="transaction-card-section">
                 <p><strong>Transaction ID:</strong> {transaction.transaction_id}</p>
