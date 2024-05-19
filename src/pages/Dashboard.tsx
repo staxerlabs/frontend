@@ -22,7 +22,7 @@ const Dashboard: React.FC = () => {
                 <div style={{"lineHeight": "2rem"}}>
                 Wallet Balance
                     <span style={walletShow ? {visibility: 'hidden'} : {visibility: 'visible'}}>
-                        <h3>$ 22,00</h3>
+                        <h3>$ 0,00</h3>
                     </span>
                 </div>
                   

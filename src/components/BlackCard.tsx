@@ -7,7 +7,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ text }) => {
   return (
-    <div className="card card-grey">
+    <div className="card card-black">
       {text}
     </div>
   );

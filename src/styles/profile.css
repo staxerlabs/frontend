@@ -1,0 +1,18 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: space-between;
+    min-height: 90svh;
+}
+
+.profile-pic-title, .profile-settings-row {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-nickname, .profile-settings-name {
+    min-width: 70%;
+}

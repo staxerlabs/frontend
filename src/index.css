@@ -76,6 +76,11 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+h1, h2, h3 {
+    padding-bottom: 1rem;
+    font-weight: 700;
+}
+
 /* Forms */
 button {
     background-color: var(--black);
@@ -189,6 +194,16 @@ select {
 
 .icon {
     padding: 0;
+}
+
+.icon-stroke {
+    border-radius: 12px;
+    border: 1px solid var(--black);
+    padding: 0.5rem;
+}
+
+hr {
+    border: 1px solid #ccc; /* Light gray solid border */
 }
 
 /* Desktop */
