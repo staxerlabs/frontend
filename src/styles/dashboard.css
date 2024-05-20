@@ -72,9 +72,11 @@
 
 .dashboard-card-grid > * {
     color: var(--black);
+    background-color: var(--white);
     border-radius: 12px;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     cursor: pointer
 }
 

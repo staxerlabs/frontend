@@ -1,13 +1,21 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/dashboard.css'
 import ButtonNewAccount from '../components/ButtonNewAccount';
+import { getSafes } from '../utils/getSafes';
+import AccountButton from '../components/AccountButton';
+
+interface Safe {
+    nickname: string;
+    percentage: number;
+}
 
 const Dashboard: React.FC = () => {
     const navigate = useNavigate();
     const [screen, setScreen] = useState('overview');
     const [walletShow, setWalletShow] = useState(false);
+    const [safes, setSafes] = useState<Safe[]>([]);
 
     const SplitClaimClickHandler = () => {
         const message = encodeURIComponent("Your safes have been split and claimed.");
@@ -15,6 +23,13 @@ const Dashboard: React.FC = () => {
         const route = encodeURIComponent("/dashboard");
         navigate(`/success/${message}/${buttonText}/${route}`)
       }
+    
+      useEffect(() => {
+        getSafes().then((safes: Safe[]) => { // Assuming getSafes() returns an array of Safe objects
+            setSafes(safes);
+            console.log(safes)
+        });
+    }, []);
 
     return (
         <main className='dashboard'>
@@ -42,14 +57,22 @@ const Dashboard: React.FC = () => {
                     >Overview</button>
                     <button 
                         className={screen == 'overview' ? 'dashboard-title-inactive' : 'dashboard-title-active' }
+                        // In the future, add transition to the screen change
                         // onClick={() => setScreen('dashboard')}
                         onClick={() => navigate('/transaction-history')}
                     >Transaction history</button>
                 </span>
 
+                {/* Safes section */}
                 <section>
                 <h2>Active Safes</h2>
                 <div className='dashboard-card-grid'>
+                    {safes.map((safe: Safe) => 
+                        <AccountButton
+                            key={safe.nickname}
+                            safe={safe}
+                        />
+                    )}
                     <ButtonNewAccount/>
                 </div>
                 <button 

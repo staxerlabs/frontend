@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Plus } from '@phosphor-icons/react';
+import '../styles/dashboard.css'
 
 const ButtonNewAccount: React.FC = () => {
     const navigate = useNavigate();
