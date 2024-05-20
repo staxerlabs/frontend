@@ -1,6 +1,5 @@
 import React from 'react';
 import logo from '../assets/staxer-black.png';
-import {ArrowRight} from '@phosphor-icons/react';
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import '../styles/header.css';
 
@@ -16,6 +15,7 @@ const Header: React.FC = () => {
                 className="logo-navbar "
               />{' '}
               <h1>Staxer</h1>
+
               
           <Navbar.Toggle aria-controls="basic-navbar-nav" className='navbar-button'/>
           <Navbar.Collapse id="basic-navbar-nav">

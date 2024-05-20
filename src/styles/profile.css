@@ -15,4 +15,5 @@
 
 .profile-nickname, .profile-settings-name {
     min-width: 70%;
+    margin-bottom: 0;
 }

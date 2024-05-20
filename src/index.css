@@ -204,6 +204,10 @@ select {
     padding: 0.5rem;
 }
 
+.icon-clickable {
+    cursor: pointer;
+}
+
 hr {
     border: 1px solid #ccc; /* Light gray solid border */
 }
