@@ -16,8 +16,6 @@ const Location: React.FC<LocationProps> = () => {
 
   const [location, setLocation] = useState<string>('');
   const [results, setResults] = useState<any[]>([]);
-  const [countryCode, setCountryCode] = useState<string>('');
-  const [countryName, setCountryName] = useState<string>('');
 
   const fetchLocationSuggestions = useCallback(
     debounce(async (query: string) => {
@@ -62,13 +60,12 @@ const Location: React.FC<LocationProps> = () => {
   const LocationClickHandler = async () => {
     await console.log(location)
     // Placeholder user_id: 1
-    // checkCountry(countryName, countryCode, 1)
     navigate('/selectrates')
   }
 
   return (
       <main className="onboarding">
-        <Link to='/tracking' className="skip-link">Skip</Link>
+        <Link to='/selectrates' className="skip-link">Skip</Link>
         <span className='onboarding-title'>
           <MapPin size={24} weight='fill' /> 
           &nbsp;
