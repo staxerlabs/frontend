@@ -4,8 +4,10 @@ import { MapPin } from "@phosphor-icons/react";
 import CustomTooltip from "./CustomTooltip";
 import apiKey from "../utils/location_api";
 import '../styles/onboarding.css'
+import supabase from '../utils/supabase';
 import debounce from 'lodash/debounce'
 import { checkCountry } from '../utils/supabaseLocation';
+import CardText from './CardText';
 
 interface LocationProps {}
 
@@ -24,20 +26,24 @@ const Location: React.FC<LocationProps> = () => {
         return;
       }
 
-      const api_url = `https://autocomplete.search.hereapi.com/v1/autocomplete?q=${location}&types=area&lang=en&apiKey=${apiKey}`
-
       try {
-        const response = await fetch(api_url);
-        const data = await response.json();
-        console.log(data.items)
-        setResults(data.items);
-        
+        const { data, error } = await supabase
+          .from('countries_and_states')
+          .select('description, name')
+          .ilike('description', `%${query}%`);
+
+        if (error) {
+          throw new Error(`Error fetching location suggestions: ${error.message}`);
+        }
+
+        console.log('Fetched locations:', data);
+        setResults(data);
       } catch (error) {
-        console.error('Error fetching location:', error);
+        console.error('Error fetching location suggestions:', error);
         setResults([]);
       }
     }, 300), // 300ms debounce delay
-    [location]
+    []
   );
 
   useEffect(() => {
@@ -48,26 +54,15 @@ const Location: React.FC<LocationProps> = () => {
     setLocation(e.target.value);
   };
 
-  const resultClickerHandler = (location_data: object) => {
-    // Adds location info at state level if user is in US or Canada
-    const countryCode = location_data.address.countryCode
-    const countryName = location_data.address.countryName
-    
-    if (countryCode === 'USA' || countryCode === 'CAN') {
-      setCountryCode(location_data.address.stateCode) 
-      setCountryName(location_data.address.state) 
-    } else {
-      setCountryCode(countryCode)
-      setCountryName(countryName)
-    }
-    setLocation(location_data.title)
+  const resultClickerHandler = (location_name: string) => {
+    setLocation(location_name)
     setResults([])
   }
 
   const LocationClickHandler = async () => {
     await console.log(location)
     // Placeholder user_id: 1
-    checkCountry(countryName, countryCode, 1)
+    // checkCountry(countryName, countryCode, 1)
     navigate('/selectrates')
   }
 
@@ -82,18 +77,26 @@ const Location: React.FC<LocationProps> = () => {
           <CustomTooltip text='Please type the location of your main tax residency.'/>
         </span>
 
-        <div>
-        <input type="text" placeholder="What's your default location?"  value={location} onChange={handleInputChange} className='location-input'/>
+        <div className='location-search'>
+        <input 
+          type="text" 
+          placeholder="What's your default location?"  
+          value={location} 
+          onChange={handleInputChange} 
+          className='location-input'
+        />
 
           {/* Autocomplete results */}
           <div className='location-autocomplete-results'>
             <ul>
               {results.map((result, index) => (
-                <li key={index} onClick={() => resultClickerHandler(result)}>{result.title}</li>
+                <li key={index} onClick={() => resultClickerHandler(result.description)}>{result.description}</li>
               ))}
             </ul>
           </div>
         </div>
+
+        <CardText text='As we are still in the early development stages, we provide support for a small number of countries, but we intend to extend that number in the future.'/>
 
         <button onClick={LocationClickHandler}>Confirm</button>
       </main>

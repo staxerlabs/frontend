@@ -46,6 +46,10 @@
     text-align: end;
 }
 
+.location-search {
+    width: 100%;
+}
+
 .location-input {
 margin-bottom: 0;
 }
