@@ -4,11 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/dashboard.css'
 import ButtonNewAccount from '../components/ButtonNewAccount';
 import { getSafes } from '../utils/getSafes';
+import { getAccounts } from '../utils/getAccounts';
 import AccountButton from '../components/AccountButton';
+import SafeButton from '../components/SafeButton';
 
 interface Safe {
     nickname: string;
     percentage: number;
+}
+
+interface Account {
+    nickname: string;
 }
 
 const Dashboard: React.FC = () => {
@@ -16,6 +22,7 @@ const Dashboard: React.FC = () => {
     const [screen, setScreen] = useState('overview');
     const [walletShow, setWalletShow] = useState(false);
     const [safes, setSafes] = useState<Safe[]>([]);
+    const [accounts, setAccounts] = useState<Account[]>([]);
 
     const SplitClaimClickHandler = () => {
         const message = encodeURIComponent("Your safes have been split and claimed.");
@@ -27,7 +34,11 @@ const Dashboard: React.FC = () => {
       useEffect(() => {
         getSafes().then((safes: Safe[]) => { // Assuming getSafes() returns an array of Safe objects
             setSafes(safes);
-            console.log(safes)
+        });
+
+        getAccounts().then((accounts: Account[]) => { 
+            setAccounts(accounts);
+            console.log(accounts)
         });
     }, []);
 
@@ -40,8 +51,7 @@ const Dashboard: React.FC = () => {
                         <h3>$ 0,00</h3>
                     </span>
                 </div>
-                  
-                    
+                   
                 <p></p>
                 <p></p>
                 <button onClick={() => setWalletShow(!walletShow)}>
@@ -68,7 +78,7 @@ const Dashboard: React.FC = () => {
                 <h2>Active Safes</h2>
                 <div className='dashboard-card-grid'>
                     {safes.map((safe: Safe) => 
-                        <AccountButton
+                        <SafeButton
                             key={safe.nickname}
                             safe={safe}
                         />
@@ -84,6 +94,12 @@ const Dashboard: React.FC = () => {
                 <section>
                     <h2>My Accounts</h2>
                     <div className='dashboard-card-grid'>
+                            {accounts.map((account: Account) => 
+                                <AccountButton
+                                    key={account.nickname}
+                                    account={account}
+                                />
+                            )}
                         <ButtonNewAccount/>
                 </div>
                 </section>

@@ -2,15 +2,16 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/dashboard.css'
 
-interface Account {
+interface Safe {
     nickname: string;
+    percentage: number;
 }
 
-interface NewAccountProps {
-    account: Account;
+interface NewSafeProps {
+    safe: Safe;
 }
 
-const ButtonNewAccount: React.FC<NewAccountProps> = ({account}) => {
+const ButtonNewAccount: React.FC<NewSafeProps> = ({safe}) => {
     const navigate = useNavigate();
     
     return(
@@ -18,8 +19,8 @@ const ButtonNewAccount: React.FC<NewAccountProps> = ({account}) => {
             className='card-grid'
             // onClick={() => navigate('/newsafe')}
         >
-                        <p><b>{account.nickname}</b></p>
-                        
+                        <p><b>{safe.nickname}</b></p>
+                        {safe.percentage}
                     </div>
     )
 
