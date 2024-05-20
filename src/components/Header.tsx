@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../assets/staxer-black.png';
-import { Container, Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import '../styles/header.css';
 
 const Header: React.FC = () => {

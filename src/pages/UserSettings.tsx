@@ -82,12 +82,12 @@ const UserSettings: React.FC = () => {
                         {/* Mapping through the icons dynamically */}
                         <Icon key={index} weight='fill' size={32}/>
                         <span className="field-name">{field.name}:</span>
-                        {/* <Form>
+                        <Form>
                             <Form.Switch
                             id="custom-switch"
                             disabled
                             />
-                        </Form> */}
+                        </Form>
                         <UnderDevelopmentTooltip/>
                     
                 </div>

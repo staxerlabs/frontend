@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import '../styles/dashboard.css'
 
 interface Account {
@@ -11,7 +11,7 @@ interface NewAccountProps {
 }
 
 const ButtonNewAccount: React.FC<NewAccountProps> = ({account}) => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     
     return(
         <div 

@@ -11,12 +11,14 @@ export const getAccounts = async (): Promise<Account[] | Error> => {
             .select('nickname');
 
         if (!accounts || accounts.length === 0) {
-            return new Error('No accounts found');
+            console.error(error)
+            return new Error("No accounts found");
         } else {
             // console.log(accounts);
             return accounts as Account[];
         }
     } catch (error: any) {
-        return error as Error;
+        console.error("Error while fetching accounts:", error);
+        throw error;
     }
 };

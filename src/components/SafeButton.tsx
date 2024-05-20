@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import '../styles/dashboard.css'
 
 interface Safe {
@@ -12,7 +12,7 @@ interface NewSafeProps {
 }
 
 const ButtonNewAccount: React.FC<NewSafeProps> = ({safe}) => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     
     return(
         <div 

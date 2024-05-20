@@ -1,6 +1,8 @@
 import supabase from './supabase';
 
-export async function checkCountry(countryName: string, countryCode: string, userId: bigint) {
+export async function checkCountry(countryName: string, countryCode: string, 
+    // userId: bigint
+    ) {
     try {
     const { data, error } = await supabase
         .from('countries_and_states')
@@ -11,15 +13,15 @@ export async function checkCountry(countryName: string, countryCode: string, use
     if (error) {
         throw new Error(`Error checking country existence: ${error.message}`);
     }
-    console.log(countryName, countryCode)
+    console.log(data, countryName, countryCode)
 
     // Adds country to the list if it's not in the DB
     if (data.length === 0) {
-        const insertedData = await insertCountry(countryName, countryCode);
-        updateUserTableWithLocationCode(insertedData[0].id, userId);
+        // const insertedData = await insertCountry(countryName, countryCode);
+        // updateUserTableWithLocationCode(insertedData[0].id, userId);
     // Assigns location to user if country is in the DB
     } else {
-        updateUserTableWithLocationCode(data[0].id, userId);
+        // updateUserTableWithLocationCode(data[0].id, userId);
     }
     } catch (error) {
     console.error(error);
@@ -52,7 +54,7 @@ export async function updateUserTableWithLocationCode(locationId: bigint, userId
     throw new Error(`Error updating user table: ${error.message}`);
     }
 
-    console.log("User table updated successfully with location code.");
+    console.log("User table updated successfully with location code.", data);
 }
 
 export async function getLocationId (countryName: string, countryCode: string) {

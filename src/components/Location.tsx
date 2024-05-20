@@ -2,11 +2,11 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { MapPin } from "@phosphor-icons/react";
 import CustomTooltip from "./CustomTooltip";
-import apiKey from "../utils/location_api";
+// import apiKey from "../utils/location_api";
 import '../styles/onboarding.css'
 import supabase from '../utils/supabase';
 import debounce from 'lodash/debounce'
-import { checkCountry } from '../utils/supabaseLocation';
+// import { checkCountry } from '../utils/supabaseLocation';
 import CardText from './CardText';
 
 interface LocationProps {}

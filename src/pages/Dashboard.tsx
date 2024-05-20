@@ -32,13 +32,21 @@ const Dashboard: React.FC = () => {
       }
     
       useEffect(() => {
-        getSafes().then((safes: Safe[]) => { // Assuming getSafes() returns an array of Safe objects
-            setSafes(safes);
+        getSafes().then((safes: Safe[] | Error) => { // Assuming getSafes() returns an array of Safe objects
+            if (safes instanceof Array) {
+                setSafes(safes);
+            } else {
+                console.error("Error occurred while fetching safes:")
+            }
+            
         });
 
-        getAccounts().then((accounts: Account[]) => { 
-            setAccounts(accounts);
-            console.log(accounts)
+        getAccounts().then((accounts: Account[] | Error) => { 
+            if (accounts instanceof Array) {
+                setAccounts(accounts);
+            } else {
+                console.error("Error occurred while fetching accounts:")
+            }
         });
     }, []);
 
