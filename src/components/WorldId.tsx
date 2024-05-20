@@ -9,7 +9,7 @@ const WorldId: React.FC<WorldIdProps> = () => {
     const navigate = useNavigate();
 
   const worldIdClickHandler = () => {
-    navigate('/location')
+    navigate('/tracking')
   }
 
   return (

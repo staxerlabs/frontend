@@ -45,3 +45,30 @@
     grid-column: 1/4;
     text-align: end;
 }
+
+.location-input {
+margin-bottom: 0;
+}
+
+.location-autocomplete-results {
+    width: 100%;
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.location-autocomplete-results ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.location-autocomplete-results li {
+    padding: 0.5rem;
+    line-height: 1.5rem;
+}
+
+.location-autocomplete-results li:hover {
+    background-color: var(--white);
+    color: var(--black);
+    cursor: pointer;
+}
