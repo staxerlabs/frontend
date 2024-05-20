@@ -23,8 +23,6 @@ const Header: React.FC = () => {
             <Nav.Link href="/dashboard">Dashboard</Nav.Link>
             <Nav.Link href="/profile/:user_id">Profile</Nav.Link>
             <Nav.Link href="/settings/:user_id">Settings</Nav.Link>
-            {/* Add sign out link */}
-            <Nav.Link href="/">Sign out <ArrowRight/> </Nav.Link>
           </Nav>
         </Navbar.Collapse>
     </Navbar>
