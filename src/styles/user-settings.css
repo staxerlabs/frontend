@@ -1,0 +1,102 @@
+.settings-nickname {
+  color: #080a0b;
+  font-size: 20px;
+  font-family: "Poppins";
+  font-weight: 700;
+  line-height: 26px;
+  text-align: center;
+  margin-top: 1rem;
+  padding-bottom: 0;
+}
+
+.settings-nickname-upgrade {
+  color: #5d5d5b;
+  font-size: 16px;
+  font-family: "Poppins";
+  line-height: 20px;
+  text-align: center;
+}
+
+.user-settings-page {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .field-container {
+    margin-bottom: 20px;
+  }
+  
+  .field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .field-name {
+    color: grey;
+    font-weight: bold;
+  }
+  
+  .field-value {
+    margin-left: 10px;
+  }
+  
+  .edit-icon {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    color: grey;
+  }
+  
+  .edit-menu {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .edit-menu input {
+    height: 48px;
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .edit-menu button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .settings-edit-line {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+/* Permissions */
+.settings-permission-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settings-permission-row > .field-name {
+  width: 70%;
+}
+
+.settings-profile-pic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#custom-switch {
+  width: 3rem;
+  height: 1.5rem;
+}

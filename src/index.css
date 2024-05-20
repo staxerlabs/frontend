@@ -76,6 +76,10 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+h1, h2, h3 {
+    font-weight: 700;
+}
+
 /* Forms */
 button {
     background-color: var(--black);
@@ -125,7 +129,8 @@ input[type=text] {
     background-color: var(--grey);
     border: 0;
     border-bottom: 3px solid #505050;
-    margin-bottom: 2rem;
+    padding-left: 0.5rem;
+    /* margin-bottom: 2rem; */
     width: 100%;
     font-size: 12px;
     height: 42px;
@@ -189,6 +194,22 @@ select {
 
 .icon {
     padding: 0;
+    max-width: 2rem;
+    max-height: 2rem;
+}
+
+.icon-stroke {
+    border-radius: 12px;
+    border: 1px solid var(--black);
+    padding: 0.5rem;
+}
+
+.icon-clickable {
+    cursor: pointer;
+}
+
+hr {
+    border: 1px solid #ccc; /* Light gray solid border */
 }
 
 /* Desktop */

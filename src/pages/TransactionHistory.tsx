@@ -9,7 +9,7 @@ const TransactionHistory: React.FC = () => {
     return (
         <main className="history-container">
 
-                <h1>Transaction History</h1>
+                <h1 className="history-title">Transaction History</h1>
                 <button 
                     onClick={() => navigate('/dashboard')}
                     className="button-wide mini-button"

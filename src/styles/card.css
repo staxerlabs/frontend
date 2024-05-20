@@ -1,7 +1,15 @@
 .card {
     width: 100%;
-    background-color: #f0f0f0;
     border-radius: 12px;
     padding: 1rem;
+    min-height: 3rem;
   }
   
+  .card-grey {
+    background-color: #f0f0f0;
+  }
+
+  .card-black {
+    background-color: black;
+    color: var(--white);
+  }

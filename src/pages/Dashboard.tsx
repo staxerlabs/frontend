@@ -1,13 +1,28 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/dashboard.css'
 import ButtonNewAccount from '../components/ButtonNewAccount';
+import { getSafes } from '../utils/getSafes';
+import { getAccounts } from '../utils/getAccounts';
+import AccountButton from '../components/AccountButton';
+import SafeButton from '../components/SafeButton';
+
+interface Safe {
+    nickname: string;
+    percentage: number;
+}
+
+interface Account {
+    nickname: string;
+}
 
 const Dashboard: React.FC = () => {
     const navigate = useNavigate();
     const [screen, setScreen] = useState('overview');
     const [walletShow, setWalletShow] = useState(false);
+    const [safes, setSafes] = useState<Safe[]>([]);
+    const [accounts, setAccounts] = useState<Account[]>([]);
 
     const SplitClaimClickHandler = () => {
         const message = encodeURIComponent("Your safes have been split and claimed.");
@@ -15,6 +30,25 @@ const Dashboard: React.FC = () => {
         const route = encodeURIComponent("/dashboard");
         navigate(`/success/${message}/${buttonText}/${route}`)
       }
+    
+      useEffect(() => {
+        getSafes().then((safes: Safe[] | Error) => { // Assuming getSafes() returns an array of Safe objects
+            if (safes instanceof Array) {
+                setSafes(safes);
+            } else {
+                console.error("Error occurred while fetching safes:")
+            }
+            
+        });
+
+        getAccounts().then((accounts: Account[] | Error) => { 
+            if (accounts instanceof Array) {
+                setAccounts(accounts);
+            } else {
+                console.error("Error occurred while fetching accounts:")
+            }
+        });
+    }, []);
 
     return (
         <main className='dashboard'>
@@ -22,11 +56,10 @@ const Dashboard: React.FC = () => {
                 <div style={{"lineHeight": "2rem"}}>
                 Wallet Balance
                     <span style={walletShow ? {visibility: 'hidden'} : {visibility: 'visible'}}>
-                        <h3>$ 22,00</h3>
+                        <h3>$ 0,00</h3>
                     </span>
                 </div>
-                  
-                    
+                   
                 <p></p>
                 <p></p>
                 <button onClick={() => setWalletShow(!walletShow)}>
@@ -42,14 +75,22 @@ const Dashboard: React.FC = () => {
                     >Overview</button>
                     <button 
                         className={screen == 'overview' ? 'dashboard-title-inactive' : 'dashboard-title-active' }
+                        // In the future, add transition to the screen change
                         // onClick={() => setScreen('dashboard')}
                         onClick={() => navigate('/transaction-history')}
                     >Transaction history</button>
                 </span>
 
+                {/* Safes section */}
                 <section>
                 <h2>Active Safes</h2>
                 <div className='dashboard-card-grid'>
+                    {safes.map((safe: Safe) => 
+                        <SafeButton
+                            key={safe.nickname}
+                            safe={safe}
+                        />
+                    )}
                     <ButtonNewAccount/>
                 </div>
                 <button 
@@ -61,6 +102,12 @@ const Dashboard: React.FC = () => {
                 <section>
                     <h2>My Accounts</h2>
                     <div className='dashboard-card-grid'>
+                            {accounts.map((account: Account) => 
+                                <AccountButton
+                                    key={account.nickname}
+                                    account={account}
+                                />
+                            )}
                         <ButtonNewAccount/>
                 </div>
                 </section>
