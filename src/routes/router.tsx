@@ -11,8 +11,6 @@ import Success from "../pages/Success";
 import Dashboard from "../pages/Dashboard";
 import TransactionHistory from "../pages/TransactionHistory";
 import EditTransaction from "../pages/EditTransaction";
-import Profile from "../pages/Profile";
-import UserSettings from "../pages/UserSettings";
 
 const router = createBrowserRouter([
     {
@@ -59,14 +57,6 @@ const router = createBrowserRouter([
         {
           path: '/edit-transaction/:transaction_id',
           element: <EditTransaction/>
-        },
-        {
-          path: '/profile/:user_id',
-          element: <Profile/>
-        },
-        {
-          path: '/user-settings/:user_id',
-          element: <UserSettings/>
         }
       ]
     },

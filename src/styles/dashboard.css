@@ -72,11 +72,9 @@
 
 .dashboard-card-grid > * {
     color: var(--black);
-    background-color: var(--white);
     border-radius: 12px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     cursor: pointer
 }
 
@@ -96,6 +94,6 @@
     background-color: var(--grey);
     opacity: 0.63;
     display: flex;
-    /* font-size: 0.75rem; */
+    font-size: 0.75rem;
     line-height: 1.5rem;
 }
