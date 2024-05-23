@@ -13,6 +13,7 @@ import TransactionHistory from "../pages/TransactionHistory";
 import EditTransaction from "../pages/EditTransaction";
 import Profile from "../pages/Profile";
 import UserSettings from "../pages/UserSettings";
+import Worldcoin from "../pages/Worldcoin";
 
 const router = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         {
           index: true,
           element: <Onboarding/>
+        },
+        {
+          path: '/worldcoin',
+          element: <Worldcoin/>
         },
         {
           path: '/location',
