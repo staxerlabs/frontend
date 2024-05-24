@@ -4,22 +4,21 @@ import { Navbar, Nav } from "react-bootstrap";
 import "../styles/header.css";
 
 const Header: React.FC = () => {
-  return (
-    <header className="header">
-      <Navbar expand="xxl">
-        <img
-          alt=""
-          src={logo}
-          width="48"
-          height="48"
-          className="logo-navbar "
-        />{" "}
-        <h1>Staxer</h1>
-        <Navbar.Toggle
-          aria-controls="basic-navbar-nav"
-          className="navbar-button"
-        />
-        <Navbar.Collapse id="basic-navbar-nav">
+    return (
+      <header className='header'>
+        <Navbar expand="xxxl">
+              <img
+                alt=""
+                src={logo}
+                width="48"
+                height="48"
+                className="logo-navbar "
+              />{' '}
+              <h1>Staxer</h1>
+
+              
+          <Navbar.Toggle aria-controls="basic-navbar-nav" className='navbar-button'/>
+          <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/dashboard">Dashboard</Nav.Link>
             <Nav.Link href="/profile/:user_id">Profile</Nav.Link>
