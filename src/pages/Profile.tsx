@@ -15,7 +15,7 @@ const Profile: React.FC = () => {
             try {
                 // Fetch user data from database
                 const userData = await getUserData(user_id);
-                if (userData.length > 0) {
+                if (Array.isArray(userData) && userData.length > 0) {
                     const nicknameData = userData[0].nickname;
                     setNickname(nicknameData);
                     // Insert handler function here

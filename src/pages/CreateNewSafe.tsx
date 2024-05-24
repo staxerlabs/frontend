@@ -129,7 +129,7 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
           <input type='text' placeholder='20%' onChange={(e) => setWithholdingAmount(parseFloat(e.target.value))}/>
         </span>
 
-        <p>Withholding account <CustomTooltip text='Add explanation here'/></p>
+        <p>Withholding account <CustomTooltip text='Plase add a name to your withholding account.'/></p>
         <span className='form-text-button'>
           <input type='text' placeholder='Public key / nickname' onChange={(e) => setWithholdingAccount(e.target.value)}/>
         </span>
