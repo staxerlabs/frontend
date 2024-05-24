@@ -9,7 +9,7 @@ const Worldcoin = () => {
   useEffect(() => {
     (async () => {
       if (worldcoin_code) {
-        const { data } = await axios.post("http://localhost:1111/worldcoin", {
+        const { data } = await axios.post("https://staxer.uc.r.appspot.com/worldcoin", {
           code: worldcoin_code,
         });
         if (!data.err) {
