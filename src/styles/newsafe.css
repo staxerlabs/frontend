@@ -4,6 +4,10 @@
     gap: 0.5rem;
 }
 
+.form-name > label {
+    width: 40%;
+}
+
 .form-text-select {
     width: 100%;
     padding: 0rem;
