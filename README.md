@@ -11,4 +11,4 @@ cp .env.example .env
 ```
 
 ## Location Tracking
-We use HERE Tracking API revert geocode to track the user's location. The API's free tier allows us to do 1000 requests per day.
+We use (https://www.here.com/docs/category/geocoding-search-v7)[HERE Tracking API revert geocode] to track the user's location. The API's free tier allows 1000 requests per day.
