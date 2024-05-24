@@ -11,7 +11,7 @@ const WorldId: React.FC<WorldIdProps> = () => {
   const worldIdClickHandler = () => {
     const nonce = Date.now();
     console.log(nonce);
-    window.location.href = `https://id.worldcoin.org/login?response_type=code&response_mode=query&client_id=app_7cbc22f80e20373856dd02a25468805f&redirect_uri=https://5ee5-103-239-235-210.ngrok-free.app/worldcoin&ready=true&scope=openid&nonce=${nonce}`;
+    window.location.href = `https://id.worldcoin.org/login?response_type=code&response_mode=query&client_id=app_7cbc22f80e20373856dd02a25468805f&redirect_uri=https://staxer-frontend-beige.vercel.app/worldcoin&ready=true&scope=openid&nonce=${nonce}`;
   };
 
   return (
