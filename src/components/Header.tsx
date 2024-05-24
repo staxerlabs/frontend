@@ -6,7 +6,7 @@ import '../styles/header.css';
 const Header: React.FC = () => {
     return (
       <header className='header'>
-        <Navbar expand="xxl">
+        <Navbar expand="xxxl">
               <img
                 alt=""
                 src={logo}

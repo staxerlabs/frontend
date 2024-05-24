@@ -1,14 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import UnderDevelopmentTooltip from '../components/UnderDevTooltip';
 import { UserCircle, PencilSimple, FloppyDiskBack, NavigationArrow, Fingerprint } from '@phosphor-icons/react';
+import getUserData from '../utils/getUserData';
 import Form from 'react-bootstrap/Form';
 import '../styles/user-settings.css'
 
 const UserSettings: React.FC = () => {
-
+    const user_id = 1;
     const [editingField, setEditingField] = useState<string | null>(null);
+    const [nickname, setNickname] = useState<string>('')
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Fetch user data from database
+                const userData = await getUserData(user_id);
+                if (userData.length > 0) {
+                    const nicknameData = userData[0].nickname;
+                    setNickname(nicknameData);
+                }
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        };
+    
+        fetchData();
+    }, []);
 
     const fields = [
+        { name: "nickname", value: nickname},
         { name: 'Email', value: 'user@example.com' },
         { name: 'Phone', value: '(123) 456-7890' },
         { name: 'Location', value: '123 Main St, Anytown, USA' },
@@ -37,9 +57,12 @@ const UserSettings: React.FC = () => {
             {/* Profile picture & name */}       
             <div className='settings-profile-pic'>
             <UserCircle size={84} />
-            <h3 className='settings-nickname'>Nickname</h3>
+            <h3 className='settings-nickname'>{nickname}
+                <PencilSimple className="edit-icon" onClick={() => handleEditClick(nickname)} />
+            </h3>
             <p className='settings-nickname-upgrade'>Upgrade to Pro <UnderDevelopmentTooltip/></p>
             
+
             </div>
             
            

@@ -1,30 +1,24 @@
-# React + TypeScript + Vite
+# Staxer dApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Setting Up Environment Variables
 
-Currently, two official plugins are available:
+1. Create a `.env` file in the root directory of the project.
+2. Copy the contents of `.env.example` into `.env`.
+3. Replace the placeholder values with your actual keys and credentials.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+cp .env.example .env
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Location Tracking
+We use (https://www.here.com/docs/category/geocoding-search-v7)[HERE Tracking API revert geocode] to track the user's location. The API's free tier allows 1000 requests per day.
+
+## All Supabase calls
+ components/CreateNewSafe - function fetchSafeTypes get all safe_types
+
+### utils folder
+getAccounts - fetch user account
+getLocationFromGeocode - does the API call and match/add it to Supabase
+getSafes - as it is, doesn't connect to user_id
+supabaseLocation - Looks if the user location is already in the DB, and if it's not, adds it to the DB
+transaction.json - Placeholder data for the history transaction, while the blochchain connections are still under development.
