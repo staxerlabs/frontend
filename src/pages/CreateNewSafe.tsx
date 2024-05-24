@@ -53,7 +53,7 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
       fetchSafeTypes();
     }, []);
 
-    const calculateSpendings = (1 - (withholdingAmount / 100))*100;
+    const calculateSpendings = (rate: number) => (1 - rate)*100;
 
     const handleSafeTypeChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
       const selectedSafeType = e.target.value;
@@ -61,7 +61,10 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
       if (selectedSafeType !== 'Employment income') {
         try {
           const suggestedRate = await suggestRates(selectedSafeType, user_location);
+          console.log('suggested rate', suggestedRate)
           setWithholdingAmount(suggestedRate);
+          const suggestedSpendings = calculateSpendings(suggestedRate);
+          setSpendings(suggestedSpendings);
         } catch (error) {
           console.error('Error suggesting rates:', error);
         }
@@ -82,8 +85,8 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
     };
   
     const CreateNewSafeClickHandler = () => {
-      if (!safeType) {
-          alert('Please select a safe type.');
+      if (!safeType || !safeName || !withholdingAmount) {
+          alert('Please fill al the values.');
         return;} else if (!withholdingAmount) {
           alert('Please enter a withholding amount.');
         return;}
@@ -131,17 +134,17 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
 
         <p>Withholding amount <CustomTooltip text='Income Tax'/> </p>
         <span className='form-text-button'>
-          <input type='text' placeholder='20%' onChange={(e) => setWithholdingAmount(parseFloat(e.target.value))}/>
+          <input type='text' placeholder='20%' value={(withholdingAmount * 100) + ' %'} onChange={(e) => setWithholdingAmount(parseFloat(e.target.value))}/>
         </span>
 
         <p>Withholding account <CustomTooltip text='Plase add a name to your withholding account.'/></p>
         <span className='form-text-button'>
-          <input type='text' placeholder='Public key / nickname' onChange={(e) => setWithholdingAccount(e.target.value)}/>
+          <input type='text' placeholder='Public key / nickname' value={withholdingAccount} onChange={(e) => setWithholdingAccount(e.target.value)}/>
         </span>
 
         <p>Spendings amount</p>
         <span className='form-text-button'>
-        <input type='text' value={calculateSpendings} readOnly onChange={(e) => setSpendings(parseFloat(e.target.value))}/>
+        <input type='text' value={spendings + ' %'} readOnly onChange={(e) => setSpendings(parseFloat(e.target.value))}/>
         </span>
 
         <button onClick={CreateNewSafeClickHandler} className='button-wide'>Continue</button>
