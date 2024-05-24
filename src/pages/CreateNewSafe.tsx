@@ -103,7 +103,7 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
         {loading ? (
         <p>Loading...</p>
       ) : (
-        <select defaultValue="" value={safeType} onChange={handleSafeTypeChange}>
+        <select defaultValue="" value={safeType} onChange={handleSafeTypeChange} className='form-select-wide'>
           <option value="" disabled hidden>Choose which safe you want to create</option>
           {safeTypes.map((description, index) => (
             <option value={description} key={index} label={description}>{description}</option>
