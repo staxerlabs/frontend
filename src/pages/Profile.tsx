@@ -18,7 +18,6 @@ const Profile: React.FC = () => {
                 if (userData.length > 0) {
                     const nicknameData = userData[0].nickname;
                     setNickname(nicknameData);
-                    console.log(nicknameData);
                     // Insert handler function here
                 }
             } catch (error) {
