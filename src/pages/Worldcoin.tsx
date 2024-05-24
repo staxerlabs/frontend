@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useParams, useRoutes, useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 
 const Worldcoin = () => {
@@ -9,9 +9,12 @@ const Worldcoin = () => {
   useEffect(() => {
     (async () => {
       if (worldcoin_code) {
-        const { data } = await axios.post("https://staxer.uc.r.appspot.com/worldcoin", {
-          code: worldcoin_code,
-        });
+        const { data } = await axios.post(
+          "https://staxer.uc.r.appspot.com/worldcoin",
+          {
+            code: worldcoin_code,
+          }
+        );
         if (!data.err) {
           window.localStorage.setItem("worldcoin", JSON.stringify(data));
           window.location.href = `${window.location.origin}/dashboard`;

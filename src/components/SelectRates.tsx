@@ -24,7 +24,7 @@ const SelectRates: React.FC<SelectRatesProps> = () => {
 
   const SelectRatesClickHandler = async () => {  
     // Send percentage info to the backend
-    const { data, error } = await supabase
+    const { error } = await supabase
     .from('user_rates')
     .insert([
       { id_user: user_id, 

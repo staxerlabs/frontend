@@ -1,6 +1,5 @@
 import React from "react";
 // import { Fingerprint } from "@phosphor-icons/react";
-import { useNavigate } from "react-router-dom";
 import logo from "../assets/staxer-black.png";
 import worldid_white from "../assets/worldid_white.png";
 import "../styles/onboarding.css";
@@ -8,7 +7,6 @@ import "../styles/onboarding.css";
 interface WorldIdProps {}
 
 const WorldId: React.FC<WorldIdProps> = () => {
-  const navigate = useNavigate();
 
   const worldIdClickHandler = () => {
     const nonce = Date.now();

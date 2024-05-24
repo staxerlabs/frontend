@@ -11,7 +11,6 @@ interface CreateNewSafeProps {}
 
 const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
     // get user_id
-    const user_id = 1;
     const user_location = 6;
 
     const navigate = useNavigate();
