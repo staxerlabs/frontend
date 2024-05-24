@@ -10,6 +10,7 @@ const suggestRates = async (safeType: string, user_location: number, amount?: nu
         .gt('lower_bound', amount)
         .lt('upper_bound', amount);
       console.log(income_tax_brackets);
+      return income_tax_brackets[0].income_tax;
       // Do something with income_tax_brackets
     } catch (error) {
       console.error('Error fetching income tax:', error);
@@ -28,12 +29,15 @@ const suggestRates = async (safeType: string, user_location: number, amount?: nu
         )
         .eq('id', user_location);
       console.log(suggested_rates);
+      return suggested_rates[0];
       // Do something with suggested_rates
     } catch (error) {
       console.error('Error fetching suggested rates:', error);
       throw error;
     }
   }
+
+  
 };
 
 export default suggestRates;

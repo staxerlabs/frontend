@@ -6,7 +6,6 @@ import supabase from '../utils/supabase';
 import CustomTooltip from '../components/CustomTooltip';
 import suggestRates from '../utils/suggestRates';
 import '../styles/newsafe.css'
-import { set } from 'lodash';
 
 interface CreateNewSafeProps {}
 
@@ -55,6 +54,32 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
     }, []);
 
     const calculateSpendings = (1 - (withholdingAmount / 100))*100;
+
+    const handleSafeTypeChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const selectedSafeType = e.target.value;
+      setSafeType(selectedSafeType);
+      if (selectedSafeType !== 'Employment income') {
+        try {
+          const suggestedRate = await suggestRates(selectedSafeType, user_location);
+          setWithholdingAmount(suggestedRate);
+        } catch (error) {
+          console.error('Error suggesting rates:', error);
+        }
+      }
+    };
+  
+    const handleAmountChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newAmount = parseFloat(e.target.value);
+      setAmount(newAmount);
+      if (safeType) {
+        try {
+          const suggestedRate = await suggestRates(safeType, user_location, newAmount);
+          setWithholdingAmount(suggestedRate);
+        } catch (error) {
+          console.error('Error suggesting rates:', error);
+        }
+      }
+    };
   
     const CreateNewSafeClickHandler = () => {
       if (!safeType) {
@@ -66,7 +91,7 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
       // Send new safe info to the backend
       
 
-      // navigate('/newsafe/2');
+      navigate('/newsafe/2');
     };
 
   return (
@@ -78,15 +103,7 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
         {loading ? (
         <p>Loading...</p>
       ) : (
-        <select defaultValue="" value={safeType} onChange={(e) => {
-          const selectedSafeType = e.target.value;
-          setSafeType(selectedSafeType);
-          // Call suggestRates with the updated value
-          if (selectedSafeType !== 'Employment income') {
-            suggestRates(selectedSafeType, user_location);
-          }
-        }}>
-        
+        <select defaultValue="" value={safeType} onChange={handleSafeTypeChange}>
           <option value="" disabled hidden>Choose which safe you want to create</option>
           {safeTypes.map((description, index) => (
             <option value={description} key={index} label={description}>{description}</option>
@@ -105,21 +122,9 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
               }/>
         </span>
 
-        <span className='form-name' style={{ visibility: safeType === 'Employment income' ? 'visible' : 'hidden' }}>
-          <label htmlFor="safeName">Income amount: <CustomTooltip text='Insert your crypto income as a result of employment.'/></label>
-          
-          <input
-            type='text'
-            id='amount'
-            value={amount}
-            onChange={(e) => {
-              const newAmount = parseFloat(e.target.value);
-              setAmount(newAmount);
-              // Call suggestRates with the updated amount and safeType
-              suggestRates(safeType, user_location, newAmount);
-            }}
-          />
-
+        <span className='form-name' style={{ display: safeType === 'Employment income' ? 'block' : 'none' }}>
+          <label htmlFor="safeName">Income amount: <CustomTooltip text='Insert your crypto income as a result of employment.' /></label>
+          <input type='text' id='amount' value={amount} onChange={handleAmountChange} />
         </span>
 
         <Card text="Based on your previous answers, we recomment the following settings."/>
