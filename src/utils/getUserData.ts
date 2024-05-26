@@ -1,13 +1,17 @@
-import supabase from "./supabase"
+import axios from "axios";
 
 const getUserData = async (id: number) => {
-    // Fetch nickname from database
-    let { data: users } = await supabase
-    .from('users')
-    .select('*')
-    .eq('id', id)
+  // Fetch nickname from database
+  let {
+    data: { data: users },
+  } = await axios.post("https://staxer.uc.r.appspot.com/select", {
+    table: "users",
+    match: {
+      id,
+    },
+  });
 
-    return users
-}
+  return users;
+};
 
 export default getUserData;

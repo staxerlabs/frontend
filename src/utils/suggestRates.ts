@@ -1,3 +1,4 @@
+import axios from "axios";
 import supabase from "../utils/supabase";
 
 const suggestRates = async (
@@ -13,12 +14,22 @@ const suggestRates = async (
 
   if (safeType === "Employment income") {
     try {
-      const { data: income_tax_brackets }: any = await supabase
-        .from("income_tax_brackets")
-        .select("income_tax")
-        .eq("state_id", user_location)
-        .gt("lower_bound", amount)
-        .lt("upper_bound", amount);
+      const {
+        data: { data: income_tax_brackets },
+      } = await axios.post("https://staxer.uc.r.appspot.com/select-range", {
+        table: "income_tax_brackets",
+        match: {
+          state_id: user_location,
+        },
+        upperbound: {
+          column: "lower_bound",
+          value: amount,
+        },
+        lowerbound: {
+          column: "upper_bound",
+          value: amount,
+        },
+      });
       return income_tax_brackets[0].income_tax;
     } catch (error) {
       console.error("Error fetching income tax:", error);
@@ -26,16 +37,14 @@ const suggestRates = async (
     }
   } else {
     try {
-      const { data: suggested_rates, error } = await supabase
-        .from("countries_and_states")
-        .select(
-          safeType === "Business revenue"
-            ? "def_vat_tax"
-            : safeType === "Trading"
-            ? "def_capgain_tax"
-            : "def_emp_tax"
-        )
-        .eq("id", user_location);
+      const {
+        data: { data: suggested_rates, error },
+      } = await axios.post("https://staxer.uc.r.appspot.com/select", {
+        table: "countries_and_states",
+        match: {
+          id: user_location,
+        },
+      });
 
       if (error) {
         throw error;

@@ -1,20 +1,20 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { MapPin } from "@phosphor-icons/react";
 import CustomTooltip from "./CustomTooltip";
 // import apiKey from "../utils/location_api";
-import '../styles/onboarding.css'
-import supabase from '../utils/supabase';
-import debounce from 'lodash/debounce'
+import "../styles/onboarding.css";
+import debounce from "lodash/debounce";
 // import { checkCountry } from '../utils/supabaseLocation';
-import CardText from './CardText';
+import CardText from "./CardText";
+import axios from "axios";
 
 interface LocationProps {}
 
 const Location: React.FC<LocationProps> = () => {
   const navigate = useNavigate();
 
-  const [location, setLocation] = useState<string>('');
+  const [location, setLocation] = useState<string>("");
   const [results, setResults] = useState<any[]>([]);
 
   const fetchLocationSuggestions = useCallback(
@@ -25,19 +25,24 @@ const Location: React.FC<LocationProps> = () => {
       }
 
       try {
-        const { data, error } = await supabase
-          .from('countries_and_states')
-          .select('description, name')
-          .ilike('description', `%${query}%`);
+        const {
+          data: { data, error },
+        } = await axios.post("https://staxer.uc.r.appspot.com/select-ilike", {
+          table: "countries_and_states",
+          ilikecolumn: "description",
+          ilikevalue: `%${query}%`,
+        });
 
         if (error) {
-          throw new Error(`Error fetching location suggestions: ${error.message}`);
+          throw new Error(
+            `Error fetching location suggestions: ${error.message}`
+          );
         }
 
-        console.log('Fetched locations:', data);
+        console.log("Fetched locations:", data);
         setResults(data);
       } catch (error) {
-        console.error('Error fetching location suggestions:', error);
+        console.error("Error fetching location suggestions:", error);
         setResults([]);
       }
     }, 300), // 300ms debounce delay
@@ -53,51 +58,56 @@ const Location: React.FC<LocationProps> = () => {
   };
 
   const resultClickerHandler = (location_name: string) => {
-    setLocation(location_name)
-    setResults([])
-  }
+    setLocation(location_name);
+    setResults([]);
+  };
 
   const LocationClickHandler = async () => {
-    await console.log(location)
+    await console.log(location);
     // Placeholder user_id: 1
-    navigate('/selectrates')
-  }
+    navigate("/selectrates");
+  };
 
   return (
-      <main className="onboarding">
-        <Link to='/selectrates' className="skip-link">Skip</Link>
-        <span className='onboarding-title'>
-          <MapPin size={24} weight='fill' /> 
-          &nbsp;
-          What's your main location?
-          &nbsp;
-          <CustomTooltip text='Please type the location of your main tax residency.'/>
-        </span>
+    <main className="onboarding">
+      <Link to="/selectrates" className="skip-link">
+        Skip
+      </Link>
+      <span className="onboarding-title">
+        <MapPin size={24} weight="fill" />
+        &nbsp; What's your main location? &nbsp;
+        <CustomTooltip text="Please type the location of your main tax residency." />
+      </span>
 
-        <div className='location-search'>
-        <input 
-          type="text" 
-          placeholder="What's your default location?"  
-          value={location} 
-          onChange={handleInputChange} 
-          className='location-input'
+      <div className="location-search">
+        <input
+          type="text"
+          placeholder="What's your default location?"
+          value={location}
+          onChange={handleInputChange}
+          className="location-input"
         />
 
-          {/* Autocomplete results */}
-          <div className='location-autocomplete-results'>
-            <ul>
-              {results.map((result, index) => (
-                <li key={index} onClick={() => resultClickerHandler(result.description)}>{result.description}</li>
-              ))}
-            </ul>
-          </div>
+        {/* Autocomplete results */}
+        <div className="location-autocomplete-results">
+          <ul>
+            {results.map((result, index) => (
+              <li
+                key={index}
+                onClick={() => resultClickerHandler(result.description)}
+              >
+                {result.description}
+              </li>
+            ))}
+          </ul>
         </div>
+      </div>
 
-        <CardText text='As we are still in the early development stages, we provide support for a small number of countries, but we intend to extend that number in the future.'/>
+      <CardText text="As we are still in the early development stages, we provide support for a small number of countries, but we intend to extend that number in the future." />
 
-        <button onClick={LocationClickHandler}>Confirm</button>
-      </main>
+      <button onClick={LocationClickHandler}>Confirm</button>
+    </main>
   );
-}
+};
 
 export default Location;
