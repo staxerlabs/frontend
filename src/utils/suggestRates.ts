@@ -1,5 +1,4 @@
 import axios from "axios";
-import supabase from "../utils/supabase";
 
 const suggestRates = async (
   safeType: string,
