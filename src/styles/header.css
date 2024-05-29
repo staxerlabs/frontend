@@ -1,12 +1,12 @@
 .header {
-    width: 100vw;
+    width: 100svw;
     /* display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    border: 2rem;
-    padding: 0 1rem; */
+    border: 2rem; */
+    padding: 1rem;
 }
 
 .navbar-button {
