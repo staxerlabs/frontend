@@ -50,7 +50,8 @@ const suggestRates = async (
       }
 
       if (suggested_rates.length > 0) {
-        const rateValue = Object.values(suggested_rates[0])[0]; // Get the value from the first (and only) key
+        // Get the value from the first (and only) key
+        const rateValue = Object.values(suggested_rates[0])[0]; 
         return rateValue;
       } else {
         throw new Error("No matching suggested rates found");

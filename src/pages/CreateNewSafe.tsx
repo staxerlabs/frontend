@@ -86,6 +86,7 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
           newAmount
         );
         setWithholdingAmount(suggestedRate);
+        console.log("suggested rate", suggestedRate);
       } catch (error) {
         console.error("Error suggesting rates:", error);
       }
@@ -102,7 +103,6 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
     }
 
     // Send new safe info to the backend
-
     navigate("/newsafe/2");
   };
 
@@ -146,7 +146,7 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
       </span>
 
       <span
-        className="form-name"
+        
         style={{ display: safeType === "Employment income" ? "block" : "none" }}
       >
         <label htmlFor="safeName">
@@ -170,7 +170,7 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
         <input
           type="text"
           placeholder="20%"
-          value={withholdingAmount * 100 + " %"}
+          value={withholdingAmount}
           onChange={(e) => setWithholdingAmount(parseFloat(e.target.value))}
         />
       </span>
