@@ -83,7 +83,7 @@ const Dashboard: React.FC = () => {
 
                 {/* Safes section */}
                 <section>
-                <h2>Active Safes</h2>
+                <h3>Active Safes</h3>
                 <div className='dashboard-card-grid'>
                     {safes.map((safe: Safe) => 
                         <SafeButton
@@ -100,7 +100,7 @@ const Dashboard: React.FC = () => {
                 </section>
 
                 <section>
-                    <h2>My Accounts</h2>
+                    <h3>My Accounts</h3>
                     <div className='dashboard-card-grid'>
                             {accounts.map((account: Account) => 
                                 <AccountButton
