@@ -31,6 +31,8 @@ const UserSettings: React.FC = () => {
           const location_code = userData[0].home_state;
           const location = await getLocationFromId(location_code);
           setNickname(nicknameData);
+          setEmail(email); // Set email state
+          setLocation(location); // Set location state
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
