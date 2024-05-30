@@ -7,6 +7,7 @@ import { getSafes } from '../utils/getSafes';
 import { getAccounts } from '../utils/getAccounts';
 import AccountButton from '../components/AccountButton';
 import SafeButton from '../components/SafeButton';
+import ButtonNewSafe from '../components/ButtonNewSafe';
 
 interface Safe {
     nickname: string;
@@ -32,7 +33,7 @@ const Dashboard: React.FC = () => {
       }
     
       useEffect(() => {
-        getSafes().then((safes: Safe[] | Error) => { // Assuming getSafes() returns an array of Safe objects
+        getSafes().then((safes: Safe[] | Error) => { 
             if (safes instanceof Array) {
                 setSafes(safes);
             } else {
@@ -83,7 +84,7 @@ const Dashboard: React.FC = () => {
 
                 {/* Safes section */}
                 <section>
-                <h2>Active Safes</h2>
+                <h3>Active Safes</h3>
                 <div className='dashboard-card-grid'>
                     {safes.map((safe: Safe) => 
                         <SafeButton
@@ -91,7 +92,7 @@ const Dashboard: React.FC = () => {
                             safe={safe}
                         />
                     )}
-                    <ButtonNewAccount/>
+                    <ButtonNewSafe/>
                 </div>
                 <button 
                     className='button-light button-wide'
@@ -100,7 +101,7 @@ const Dashboard: React.FC = () => {
                 </section>
 
                 <section>
-                    <h2>My Accounts</h2>
+                    <h3>My Accounts</h3>
                     <div className='dashboard-card-grid'>
                             {accounts.map((account: Account) => 
                                 <AccountButton
