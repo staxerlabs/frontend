@@ -8,6 +8,7 @@ import {
   Fingerprint,
 } from "@phosphor-icons/react";
 import getUserData from "../utils/getUserData";
+import getLocationFromId from "../utils/getLocationFromId";
 import Form from "react-bootstrap/Form";
 import "../styles/user-settings.css";
 
@@ -15,6 +16,9 @@ const UserSettings: React.FC = () => {
   const user_id = 1;
   const [editingField, setEditingField] = useState<string | null>(null);
   const [nickname, setNickname] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  // const [location_code, setLocationCode] = useState<number>("");
+  const [location, setLocation] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,6 +27,9 @@ const UserSettings: React.FC = () => {
         const userData: any = await getUserData(user_id);
         if (userData.length > 0) {
           const nicknameData = userData[0].nickname;
+          const email = userData[0].email;
+          const location_code = userData[0].home_state;
+          const location = await getLocationFromId(location_code);
           setNickname(nicknameData);
         }
       } catch (error) {
@@ -33,16 +40,30 @@ const UserSettings: React.FC = () => {
     fetchData();
   }, []);
 
-  const fields = [
-    { name: "nickname", value: nickname },
-    { name: "Email", value: "user@example.com" },
-    { name: "Phone", value: "(123) 456-7890" },
-    { name: "Location", value: "123 Main St, Anytown, USA" },
-  ];
-
-  const handleEditClick = (fieldName: string) => {
-    setEditingField(editingField === fieldName ? null : fieldName);
+  const handleNicknameEdit = () => {
+    setEditingField("nickname");
   };
+
+  const handleEmailEdit = () => {
+    setEditingField("email");
+  };
+
+  const handleLocationEdit = () => {
+    setEditingField("location");
+  };
+
+  const handleSave = () => {
+    // Call your updateUserData function here with the updated data
+    // For demonstration, I'm just logging the updated data
+    console.log("Updated data:", { nickname, email, location });
+    setEditingField(null);
+  };
+
+  const fields = [
+    { name: "Nickname", value: nickname, handler: handleNicknameEdit },
+    { name: "Email", value: email, handler: handleEmailEdit },
+    { name: "Location", value: location, handler: handleLocationEdit },
+  ];
 
   const Icons = {
     FloppyDiskBack,
@@ -65,7 +86,7 @@ const UserSettings: React.FC = () => {
           {nickname}
           <PencilSimple
             className="edit-icon"
-            onClick={() => handleEditClick(nickname)}
+            onClick={handleNicknameEdit}
           />
         </h3>
         <p className="settings-nickname-upgrade">
@@ -80,19 +101,34 @@ const UserSettings: React.FC = () => {
           <div className="field">
             <span className="field-name">{field.name}:</span>
             <span className="field-value">{field.value}</span>
-            <PencilSimple
-              className="edit-icon"
-              onClick={() => handleEditClick(field.name)}
-            />
+            <PencilSimple className="edit-icon" onClick={field.handler} />
           </div>
 
           {/* Edit info */}
-          {editingField === field.name && (
+          {editingField === field.name.toLowerCase() && (
             <div className="edit-menu">
               {/* Replace this with actual form elements for editing */}
               <span className="settings-edit-line">
-                <input type="text" defaultValue={field.value} />
-                <button>Save</button>
+                <input
+                  type="text"
+                  defaultValue={field.value}
+                  onChange={(e) => {
+                    switch (field.name) {
+                      case "Nickname":
+                        setNickname(e.target.value);
+                        break;
+                      case "Email":
+                        setEmail(e.target.value);
+                        break;
+                      case "Location":
+                        setLocation(e.target.value);
+                        break;
+                      default:
+                        break;
+                    }
+                  }}
+                />
+                <button onClick={handleSave}>Save</button>
                 <button
                   className="button-light"
                   onClick={() => setEditingField(null)}
