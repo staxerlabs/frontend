@@ -128,7 +128,17 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
     }
 
     // Send new safe info to the backend
-    navigate("/newsafe/2");
+
+    navigate("/newsafe/2", {
+      state: {
+        safeName,
+        safeType,
+        withholdingAccount,
+        withholdingAmount,
+        spendings,
+        amount,
+      },
+    });
   };
 
   return (
@@ -226,6 +236,8 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
           onChange={(e) => setSpendings(parseFloat(e.target.value))}
         />
       </span>
+
+      { error ? <BlackCard text={error}/> : null }
 
       <button onClick={CreateNewSafeClickHandler} className="button-wide">
         Continue
