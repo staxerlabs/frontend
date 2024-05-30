@@ -22,7 +22,7 @@ const Header: React.FC = () => {
           <Nav className="me-auto">
             <Nav.Link href="/dashboard">Dashboard</Nav.Link>
             <Nav.Link href="/profile/:user_id">Profile</Nav.Link>
-            <Nav.Link href="/settings/:user_id">Settings</Nav.Link>
+            <Nav.Link href="/user_settings/:user_id">Settings</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
