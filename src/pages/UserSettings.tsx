@@ -49,6 +49,7 @@ const UserSettings: React.FC = () => {
   };
 
   const handleLocationEdit = () => {
+    // API call to get location from search
     setEditingField("location");
   };
 
