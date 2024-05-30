@@ -6,12 +6,14 @@ import CustomTooltip from "../components/CustomTooltip";
 import suggestRates from "../utils/suggestRates";
 import "../styles/newsafe.css";
 import axios from "axios";
+import BlackCard from "../components/BlackCard";
 
 interface CreateNewSafeProps {}
 
 const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
-  // get user_id
+  // placeholder values
   const user_location = 6;
+  // const user_id = 1
 
   const navigate = useNavigate();
   const [safeName, setSafeName] = useState("");
@@ -21,8 +23,10 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
   const [withholdingAccount, setWithholdingAccount] = useState<string>(""); // [public key / nickname
   const [withholdingAmount, setWithholdingAmount] = useState<number>(0);
   const [spendings, setSpendings] = useState<number>(0);
-  const [amount, setAmount] = useState<number>(0);
+  const [amount, setAmount] = useState<number | undefined>(0);
+  const [error, setError] = useState<string | null>(null);
 
+  // fetch Safe types from the DB
   useEffect(() => {
     const fetchSafeTypes = async () => {
       try {
@@ -52,32 +56,46 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
     fetchSafeTypes();
   }, []);
 
-  const calculateSpendings = (rate: number) => (1 - rate) * 100;
+  // calls suggestRates function when the safe type changes
+  useEffect(() => {
+    const fetchRates = async () => {
+      if (safeType && user_location) {
+        setLoading(true);
+        setError(null);
+        try {
+          const rate = await suggestRates(safeType, user_location, amount);
+          console.log("rate", rate);
+          setWithholdingAmount(rate);
+        } catch (err) {
+          setError('Failed to fetch rates');
+          console.error(err);
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
 
+    fetchRates();
+  }, [safeType, user_location, amount]);
+
+  // fetches change in safe types
   const handleSafeTypeChange = async (
     e: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const selectedSafeType = e.target.value;
-    setSafeType(selectedSafeType);
-    if (selectedSafeType !== "Employment income") {
-      try {
-        const suggestedRate = await suggestRates(
-          selectedSafeType,
-          user_location
-        );
-        console.log("suggested rate", suggestedRate);
-        setWithholdingAmount(suggestedRate);
-        const suggestedSpendings = calculateSpendings(suggestedRate);
-        setSpendings(suggestedSpendings);
-      } catch (error) {
-        console.error("Error suggesting rates:", error);
-      }
-    }
+    setSafeType(e.target.value);
+    console.log("safeType", e.target.value);
   };
+
+  let calculateSpendings = (rate: number) => `${(100 - rate)}%`;
+
+  useEffect(() => {
+    setSpendings(parseFloat(calculateSpendings(withholdingAmount)));
+  }, [withholdingAmount]);
 
   const handleAmountChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const newAmount = parseFloat(e.target.value);
     setAmount(newAmount);
+
     if (safeType) {
       try {
         const suggestedRate = await suggestRates(
@@ -93,8 +111,15 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
     }
   };
 
+  const formatPercentage = (rate: number | null) => {
+    if (rate === null) {
+      return "";
+    }
+    return `${rate.toFixed(2)}%`;
+  }
+
   const CreateNewSafeClickHandler = () => {
-    if (!safeType || !safeName || !withholdingAmount) {
+    if (!safeType || !safeName) {
       alert("Please fill al the values.");
       return;
     } else if (!withholdingAmount) {
@@ -109,6 +134,7 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
   return (
     <main className="createsafe">
       <h2>Select what applies to you</h2>
+      <BlackCard text="Staxer is still in the alpha stage of development and we don't have the full features ready yet. It is intended to suggest which percentage of your wallets you need to withhold for tax purposes according to your location." />
 
       <Card text="A safe is a space for saving a part of your income automatically. You can create different rules for each safe." />
 
@@ -125,7 +151,12 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
             Choose which safe you want to create
           </option>
           {safeTypes.map((description, index) => (
-            <option value={description} key={index} label={description}>
+            <option 
+              value={description} 
+              key={index} 
+              label={description}
+              disabled={description === "Employment income"}
+            >
               {description}
             </option>
           ))}
@@ -145,8 +176,7 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
         />
       </span>
 
-      <span
-        
+      <span        
         style={{ display: safeType === "Employment income" ? "block" : "none" }}
       >
         <label htmlFor="safeName">
@@ -169,8 +199,7 @@ const CreateNewSafe: React.FC<CreateNewSafeProps> = () => {
       <span className="form-text-button">
         <input
           type="text"
-          placeholder="20%"
-          value={withholdingAmount}
+          value={formatPercentage(withholdingAmount)}
           onChange={(e) => setWithholdingAmount(parseFloat(e.target.value))}
         />
       </span>
