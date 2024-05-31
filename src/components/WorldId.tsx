@@ -1,5 +1,4 @@
 import React from "react";
-// import { Fingerprint } from "@phosphor-icons/react";
 import logo from "../assets/staxer-black.png";
 import worldid_white from "../assets/worldid_white.png";
 import "../styles/onboarding.css";
