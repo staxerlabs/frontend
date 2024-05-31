@@ -17,15 +17,30 @@ const Worldcoin = () => {
         );
         if (!data.err) {
           const {
-            data: { data:supabase_data },
+            data: { data: supabase_data, error },
           } = await axios.post("https://staxer.uc.r.appspot.com/insert", {
             body: {
               worldcoin_sub: data.user_data.sub,
             },
             table: "users",
           });
-          window.localStorage.setItem("supabase-user", JSON.stringify(supabase_data));
-          window.localStorage.setItem("worldcoin", JSON.stringify(data));
+          window.localStorage.setItem(
+            "supabase-user",
+            JSON.stringify(supabase_data)
+          );
+          if (error) {
+            const {
+              data: { data: supabase_data_1 },
+            } = await axios.post("https://staxer.uc.r.appspot.com/select", {
+              match: {
+                worldcoin_sub: data.user_data.sub,
+              },
+              table: "users",
+            });
+            window.localStorage.setItem("worldcoin", JSON.stringify(supabase_data_1));
+          } else {
+            window.localStorage.setItem("worldcoin", JSON.stringify(data));
+          }
           window.location.href = `${window.location.origin}/dashboard`;
         }
       }
