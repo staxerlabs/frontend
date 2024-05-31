@@ -16,6 +16,12 @@ const Worldcoin = () => {
           }
         );
         if (!data.err) {
+          await axios.post("https://staxer.uc.r.appspot.com/insert", {
+            body: {
+              worldcoin_sub: data.user_data.sub,
+            },
+            table: "users",
+          });
           window.localStorage.setItem("worldcoin", JSON.stringify(data));
           window.location.href = `${window.location.origin}/dashboard`;
         }
