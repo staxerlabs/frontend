@@ -24,10 +24,7 @@ const Worldcoin = () => {
             },
             table: "users",
           });
-          window.localStorage.setItem(
-            "supabase-user",
-            JSON.stringify(supabase_data)
-          );
+
           if (error) {
             const {
               data: { data: supabase_data_1 },
@@ -37,10 +34,18 @@ const Worldcoin = () => {
               },
               table: "users",
             });
-            window.localStorage.setItem("worldcoin", JSON.stringify(supabase_data_1));
+            window.localStorage.setItem(
+              "supabase-user",
+              JSON.stringify(supabase_data_1)
+            );
           } else {
-            window.localStorage.setItem("worldcoin", JSON.stringify(data));
+            window.localStorage.setItem(
+              "supabase-user",
+              JSON.stringify(supabase_data)
+            );
           }
+          window.localStorage.setItem("worldcoin", JSON.stringify(data));
+
           window.location.href = `${window.location.origin}/dashboard`;
         }
       }
