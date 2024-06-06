@@ -1,5 +1,5 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, {useEffect} from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/dashboard.css'
 import ButtonNewAccount from '../components/ButtonNewAccount';
@@ -49,6 +49,15 @@ const Dashboard: React.FC = () => {
                 console.error("Error occurred while fetching accounts:")
             }
         });
+
+        // Log all items in local storage
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key) {
+              const value = localStorage.getItem(key);
+              console.log(`Key: ${key}, Value: ${value}`);
+            }
+          }
     }, []);
 
     return (
